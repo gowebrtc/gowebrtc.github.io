@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/simple.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <title>publisher</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">home</a>
+            <a href="/echo/">echo</a>
+            <a href="/publisher/">publisher</a>
+            <a href="/subscriber/">subscriber</a>
+        </nav>
+        <h1>publisher</h1>
+    </header>
+
+    <main>
+        <label><input type="checkbox" id="publisherVideoCheckbox" checked>video <i id="publisherVideoStats"></i></label>
+        <label><input type="checkbox" id="publisherAudioCheckbox" checked>audio <i id="publisherAudioStats"></i></label>
+        <label><input type="checkbox" id="publisherDataCheckbox" checked>data <i id="publisherDataStats"></i></label>
+        <input id="publisherID" type="text" placeholder="Publisher's ID" disabled>
+        <video id="publisherVideo" autoplay controls muted playsinline></video>
+        <input id="publisherText" type="text" placeholder="Type a message and press Enter" disabled>
+        <input id="startButton" type="button" value="START">
+        <code id="errorBox"></code>
+    </main>
+
+    <footer>
+        This service is provided to you free of charge. We do not guarantee that the service will be uninterrupted,
+        timely, secure, or error-free. We disclaim all liability and responsibility arising from any reliance placed on
+        the service by you or any other user.
+    </footer>
+
+    <script src="/js/gowebrtc.js"></script>
+    <script src="/js/publisher.js"></script>
+    <script src="/publisher/page.js"></script>
+</body>
+
+</html>

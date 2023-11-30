@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/simple.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <title>GoWebRTC</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">home</a>
+            <a href="/echo/">echo</a>
+            <a href="/publisher/">publisher</a>
+            <a href="/subscriber/">subscriber</a>
+        </nav>
+        <h1>GoWebRTC (Beta)</h1>
+        <p>Free WebRTC Broadcast Server</p>
+    </header>
+
+    <h3>How does it work?</h3>
+    <img alt="How does it work?" src="/img/gowebrtc.png" />
+    <p>
+        A publisher exchanges an <a target="_blank"
+            href="https://en.wikipedia.org/wiki/Session_Description_Protocol">SDP</a> offer for
+        an SDP answer with <code>POST https://api.gowebrtc.com/publisher</code>. After the exchange,
+        video/audo/data is flowing from the publisher to <code>api.gowebrtc.com</code> and nothing in the other
+        direction. The publisher gets an ID that can be shared with subscribers to connect to the publisher.
+    </p>
+
+    <p>
+        Similarly, a subscriber exchanges an SDP offer for an SDP answer with
+        <code>POST https://api.gowebrtc.com/subscriber</code>. After the exchange, video/audo/data is flowing from
+        <code>api.gowebrtc.com</code> to the subscriber and nothing in the other direction.
+    </p>
+
+    <h5>Request body:</h5>
+    <pre>{ offer: RTCSessionDescription }</pre>
+
+    <h5>Response body:</h5>
+    <pre>{ id: String, answer: RTCSessionDescription }</pre>
+
+    <h3>Video and Audio</h3>
+    <p>
+        The video is restricted to a single track and the <b>H.264</b> codec. The audio is also restricted to a single
+        track and the <b>Opus</b> codec. This allows subscribers to switch publishers without RTCPeerConnection
+        renegotiations.
+    </p>
+
+    <h3>Data</h3>
+    <p>
+        There are 3 RTCDataChannels a client may open:
+    </p>
+    <ol>
+        <li>"main" (mandatory) - to issue commands to <code>api.gowebrtc.com</code></li>
+        <li>"tcp" (optional) - to broadcast data reliably</li>
+        <li>"udp" (optional) - to broadcast data unreliably</li>
+    </ol>
+
+    <h3>Trickle ICE</h3>
+    <p>
+        Trickle ICE is not supported to reduce the number of requests to the server. So all ICE candidates must be
+        collected before sending an SDP offer.
+    </p>
+
+    <h3>Commands</h3>
+    <p>
+        Commands are sent over the "main" RTCDataChannel to <code>api.gowebrtc.com</code> and are not broadcasted.
+    </p>
+
+    <h5>Subscriber commands:</h5>
+    <pre>{ command: "watch", data: { id: publisherID } }</pre>
+
+    <footer>
+        This service is provided to you free of charge. We do not guarantee that the service will be uninterrupted,
+        timely, secure, or error-free. We disclaim all liability and responsibility arising from any reliance placed on
+        the service by you or any other user.
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/simple.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <title>echo</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">home</a>
+            <a href="/echo/">echo</a>
+            <a href="/publisher/">publisher</a>
+            <a href="/subscriber/">subscriber</a>
+        </nav>
+        <h1>echo</h1>
+    </header>
+
+    <main>
+        <h3>PUBLISHER</h3>
+        <label><input type="checkbox" id="publisherVideoCheckbox" checked>video <i id="publisherVideoStats"></i></label>
+        <label><input type="checkbox" id="publisherAudioCheckbox" checked>audio <i id="publisherAudioStats"></i></label>
+        <label><input type="checkbox" id="publisherDataCheckbox" checked>data <i id="publisherDataStats"></i></label>
+        <input id="publisherID" type="text" placeholder="publisher's ID" disabled>
+        <video id="publisherVideo" autoplay muted playsinline></video>
+        <input id="publisherText" type="text" placeholder="enter a message" disabled>
+
+        <h3>SUBSCRIBER</h3>
+        <label><input type="checkbox" id="subscriberVideoCheckbox" checked>video <i
+                id="subscriberVideoStats"></i></label>
+        <label><input type="checkbox" id="subscriberAudioCheckbox" checked>audio <i
+                id="subscriberAudioStats"></i></label>
+        <label><input type="checkbox" id="subscriberDataCheckbox" checked>data <i id="subscriberDataStats"></i></label>
+        <video id="subscriberVideo" autoplay muted playsinline></video>
+        <input id="subscriberText" type="text" placeholder="publisher's message" disabled>
+        <input id="startButton" type="button" value="START">
+    </main>
+
+    <footer>
+        This service is provided to you free of charge. We do not guarantee that the service will be uninterrupted,
+        timely, secure, or error-free. We disclaim all liability and responsibility arising from any reliance placed on
+        the service by you or any other user.
+    </footer>
+
+    <script src="/js/gowebrtc.js"></script>
+    <script src="/js/publisher.js"></script>
+    <script src="/js/subscriber.js"></script>
+    <script src="/echo/page.js"></script>
+</body>
+
+</html>

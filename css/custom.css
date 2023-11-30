@@ -1,0 +1,9 @@
+video {
+    background-color: black;
+}
+
+input,
+video,
+img {
+    width: 100%;
+}
